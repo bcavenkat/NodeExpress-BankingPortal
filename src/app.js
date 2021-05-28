@@ -41,14 +41,14 @@ app.get('/transfer', function (request, response) {
 });
 
 app.post('/transfer', (request, response) => {
-    console.log("inside the submit");
-    console.log(request.body);
+    //console.log("inside the submit");
+    //console.log(request.body);
     accounts[request.body.from].balance -= request.body.amount;
     accounts[request.body.to].balance += parseInt(request.body.amount, 10);
-    console.log(accounts);
+    //console.log(accounts);
     let accountsJSON = JSON.stringify(accounts, null, 4)
-    console.log(accountsJSON);
-    fs.writeFileSync(path.join(__dirname, 'json','accounts.json'), accountsJSON, {encoding:'utf8'});
+    //console.log(accountsJSON);
+    fs.writeFileSync(path.join(__dirname, 'json','accounts.json'), accountsJSON, 'utf8');
     response.render('transfer', {message: 'Transfer Completed'});
 });
 
@@ -60,7 +60,7 @@ app.post('/payment', (request, response) => {
     accounts.credit.balance -= request.body.amount;
     accounts.credit.available += parseInt(request.body.amount);
     let accountsJSON = JSON.stringify(accounts, null, 4)
-    fs.writeFileSync(path.join(__dirname, 'json','accounts.json'), accountsJSON, {encoding:'utf8'});
+    fs.writeFileSync(path.join(__dirname, 'json','accounts.json'), accountsJSON, 'utf8');
     response.render('payment', {message: 'Payment Successful', account: accounts.credit});
 });
 
