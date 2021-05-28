@@ -60,8 +60,8 @@ app.post('/payment', (request, response) => {
     accounts.credit.balance -= request.body.amount;
     accounts.credit.available += parseInt(request.body.amount);
     let accountsJSON = JSON.stringify(accounts, null, 4)
-   fs.writeFileSync(path.join(__dirname, 'json','accounts.json'), accountsJSON, {encoding:'utf8'});
-    res.render('payment', {message: 'Payment Successful', account: accounts.credit});
+    fs.writeFileSync(path.join(__dirname, 'json','accounts.json'), accountsJSON, {encoding:'utf8'});
+    response.render('payment', {message: 'Payment Successful', account: accounts.credit});
 });
 
 
